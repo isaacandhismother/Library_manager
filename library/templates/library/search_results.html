@@ -1,0 +1,86 @@
+{% extends 'library/home.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="search_results_text">
+        Search Results for "{{ query }}":
+    </div>
+        {% for book in results %}
+            <a href="{% url 'book_detail' book.id%}">
+            <div class="book">
+                <div class="book_cover">
+                    {% if book.cover %}
+                        <img src="{{ book.cover.url }}" alt="{{ book.title }}" class="book_cover_icon" draggable="false">
+                    {% else %}
+                        <img src="{% static 'library/images/no-image.png' %}" alt="{{ book.title }}" class="no_book_cover_icon" draggable="false">
+                    {% endif %}
+
+                    {% if book.stock > 0 %}
+                        <div class="in_stock">
+                        <img class="in_stock_icon" src="{% static 'library/images/in_stock.png' %}" alt="">
+                            In stock
+                        </div>
+                    {% else %}
+                        <div class="out_of_stock">
+                        <img class="out_of_stock_icon" src="{% static 'library/images/out_of_stock.png' %}" alt="">
+                            Out of stock
+                        </div>
+                    {% endif %}
+                    <br/>
+                    <div class="author">
+                        Author: {{ book.author }}
+                    </div>
+                </div>
+
+                <div class="book_title">
+                    {{ book.title }}
+                </div>
+                    {% if book.stock > 0 %}
+                        {% if user.is_authenticated and book in user.taken_books.all %}
+                            <button disabled class="already_taken_button" id="take_book">Already Taken</button>
+                        {% else %}
+                            <form method="POST" action="{% url 'users:take_book' book.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="take_button" id="take_book">Take Book</button>
+                            </form>
+                        {% endif %}
+                    {% else %}
+                        {% if user.is_authenticated and book in user.taken_books.all %}
+                            <button disabled class="already_taken_button" id="take_book">Already Taken</button>
+                        {% elif book.id in wishlist_books %}
+                            <form method="POST" action="{% url 'users:remove_from_wishlist' book.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="remove_from_wishlist" id="take_book">Remove</button>
+                            </form>
+                        {% else %}
+                            <form method="POST" action="{% url 'users:wishlist_book' book.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="wishlist_button" id="take_book">Wishlist</button>
+                            </form>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </a>
+
+        {% empty %}
+            No results found.
+        {% endfor %}
+            <div class="num_of_pages" style="display: table">
+                {% for p in paginator.page_range %}
+                    {% if results.has_other_pages %}
+                        <a class="page_number" href="?q={{ query }}&page={{ p }}">
+                            {% if p == results.number %}
+                                <div class="current_page_button">
+                                    {{ p }}
+                                </div>
+                            {% else %}
+                                <div class="page_number_button">
+                                    {{ p }}
+                                </div>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+{% endblock %}

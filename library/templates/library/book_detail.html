@@ -1,0 +1,53 @@
+{% extends 'library/home.html' %}
+{% load static %}
+
+{%  block title %}
+    {{ book.title }}
+{%  endblock %}
+
+
+{% block content %}
+    <div class="book_detail_cover">
+        {% if book.cover %}
+            <img src="{{ book.cover.url }}" alt="{{ book.title }}" class="book_cover_icon" draggable="false">
+        {% else %}
+            <img src="{% static 'library/images/no-image.png' %}" alt="{{ book.title }}" class="no_book_cover_icon" draggable="false">
+        {% endif %}
+    </div>
+    <div class="book_detail_description">
+        <div class="book_detail_title">
+            {{ book.title }}
+        </div>
+        <div class="book_detail_divide_line"></div>
+        <div class="book_detail_author">
+            Author: {{ book.author }}
+        </div>
+    <div class="times_taken">
+        Times taken: {{ book.times_taken }}
+    </div>
+    {% if book.stock > 0 %}
+        {% if user.is_authenticated and book in user.taken_books.all %}
+            <button disabled class="already_taken_button" id="book_detail_take_book">Already Taken</button>
+        {% else %}
+            <form method="POST" action="{% url 'users:take_book' book.id %}">
+                {% csrf_token %}
+                <button type="submit" class="take_button" id="book_detail_take_book">Take Book</button>
+            </form>
+        {% endif %}
+    {% else %}
+        {% if user.is_authenticated and book in user.taken_books.all %}
+            <button disabled class="already_taken_button" id="book_detail_take_book">Already Taken</button>
+        {% elif book.id in wishlist_books %}
+            <form method="POST" action="{% url 'users:remove_from_wishlist' book.id %}">
+                {% csrf_token %}
+                <button type="submit" class="remove_from_wishlist" id="book_detail_take_book">Remove</button>
+            </form>
+        {% else %}
+            <form method="POST" action="{% url 'users:wishlist_book' book.id %}">
+                {% csrf_token %}
+                <button type="submit" class="wishlist_button" id="book_detail_take_book">Wishlist</button>
+            </form>
+        {% endif %}
+    {% endif %}
+    </div>
+{% endblock %}

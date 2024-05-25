@@ -1,0 +1,57 @@
+{% extends 'library/home.html' %}
+{% load static %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="my_books_buttons">
+    <a href="{% url 'users:taken_books' %}">
+    <button class="taken_books_button">
+        Taken books
+    </button>
+    </a>
+    <a href="{% url 'users:wishlist_books' %}">
+    <button class="wishlist_books_button">
+        Wishlist books
+    </button>
+    </a>
+    </div>
+    {% if has_taken_books %}
+        <div class="books">
+        {% for taken_book in taken_books %}
+            <a href="{% url 'book_detail' taken_book.book.id %}">
+            <div class="book">
+                <div class="book_cover">
+                    {% if taken_book.book.cover %}
+                        <img src="{{ taken_book.book.cover.url }}" alt="{{ taken_book.book.title }}" class="book_cover_icon" draggable="false">
+                    {% else %}
+                        <img src="{% static 'library/images/no-image.png' %}" alt="{{ taken_book.book.title }}" class="no_book_cover_icon" draggable="false">
+                    {% endif %}
+                    <div class="date_taken">
+                        Taken on: <br/>{{ taken_book.date_taken }}
+                    </div>
+                </div>
+                <div class="book_title">
+                    {{ taken_book.book.title }}<br/>
+                </div>
+
+                <div class="book_status">
+                    <a style="font-weight: bold">Status:</a>
+                    {% if taken_book.status == 'Taken' %}
+                        <a style="background-color: green; color: white;font-family: Calibri; padding: 1px 8px; font-style: italic">{{ taken_book.status }}</a>
+                    {% else %}
+                        <a style="background-color: gold; color: black;font-family: Calibri; padding: 1px 8px; font-style: italic">{{ taken_book.status }}</a>
+                    {% endif %}
+                </div>
+            </div>
+            </a>
+        {% endfor %}
+        </div>
+    {% else %}
+        <div style="margin-top: 100px; font-size: 20px">
+            No books taken
+        </div>
+    {% endif %}
+{% endblock %}

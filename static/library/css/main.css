@@ -1,0 +1,481 @@
+a{
+    text-decoration: none;
+    color: black;
+}
+
+a:visited{
+    text-decoration: none;
+    color: black;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+.logo{
+    position: absolute;
+    margin-left: 260px;
+    top: -5px;
+}
+
+.georgia_logo{
+    height: 80px;
+}
+
+.logo_text{
+    height: 68px;
+}
+
+.header{
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 1000px;
+    height: 10vh;
+}
+
+.user_panel{
+    position: absolute;
+    display: table;
+    margin: 15px;
+}
+
+.user_icon{
+    width: 22px;
+    height: 22px;
+}
+
+.notifications_button{
+    position: relative;
+    width: 42px;
+    height: 42px;
+    border-radius: 24px;
+    top: 1px;
+    float: left;
+    transition: ease 0.1s;
+}
+
+.notifications_button:hover{
+    background-color: lightgrey;
+}
+
+.notifications_icon{
+    width: 20px;
+    height: 20px;
+}
+
+.unread_count{
+    position: absolute;
+    top: -3px;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.notifications_panel{
+    position: absolute;
+    margin-top: 50px;
+    width: 200px;
+    z-index: 9;
+    background-color: darkgrey;
+    padding: 5px;
+}
+
+.notification{
+    background-color: silver;
+    padding: 5px;
+}
+
+.notification:hover{
+    background-color: white;
+}
+
+.hidden{
+    display: none;
+}
+
+.book_icon{
+    position: relative;
+    margin-left: -10px;
+    top: 2px;
+    padding-right: 10px;
+    width: 17px;
+    height: 17px;
+}
+
+.my_books_button{
+    position: relative;
+    float: left;
+    display: block;
+    padding: 8px 30px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-top: 1px;
+    transition: ease 0.1s;
+}
+
+.my_books_button:hover{
+    background-color: darkgrey;
+}
+
+.login_button, .logout_button, .home_button{
+    float: right;
+    display: block;
+    padding: 10px 30px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-right: 20px;
+    transition: ease 0.1s;
+}
+
+.register_button{
+    float: left;
+    display: block;
+    padding: 10px 30px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-right: 20px;
+    transition: ease 0.1s;
+}
+
+.login_button:hover,
+.logout_button:hover,
+.home_button:hover,
+.register_button:hover{
+    background-color: darkgrey;
+}
+
+.login_form{
+    position: absolute;
+    display: block;
+    left: 20%;
+    top: 1%;
+}
+
+.register_form{
+    position: absolute;
+    display: block;
+    left: 2%;
+    top: 1%;
+}
+
+.form-group{
+    margin: 10px;
+}
+
+.btn{
+    display: block;
+    margin: 100px;
+}
+
+.content{
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 1100px;
+    height: 360vh;
+    background-color: lightgrey;
+}
+
+.search_bar{
+    position: relative;
+}
+
+.search_field{
+    position: absolute;
+    margin: 15px 9px;
+    padding: 5px 10px;
+}
+
+.search_button{
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    margin: 19px 165px;
+    border: none;
+    background-color: transparent;
+}
+
+.search_icon{
+    height: 15px;
+    width: 15px;
+}
+
+.search_results_text{
+    padding: 20px;
+    font-size: 1.2em;
+    font-family: Georgia;
+}
+
+.categories{
+    position: absolute;
+    margin: 50px 20px;
+    font-weight: bold;
+    font-family: Calibri;
+}
+
+.books{
+    position: relative;
+    margin: 10px auto;
+    width: 700px;
+    height: inherit;
+    text-align: center;
+    background-color: white;
+}
+.book{
+    background-color: lightgrey;
+    display: inline-block;
+    float: left;
+    height: 240px;
+    width: calc(700px/4 - 12px);
+    margin: 0px 6px 6px 6px;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+.book_title{
+    font-family: Calibri;
+    margin: auto;
+    width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.date_taken{
+    opacity: 1;
+    color: aliceblue;
+    position: absolute;
+    padding: 5px 10px 80px;
+    font-size: 13px;
+    font-family: Calibri;
+    font-weight: bold;
+    text-align: left;
+    background-image: linear-gradient(to bottom, black, transparent);
+}
+
+.book_status{
+    margin-top: 7px;
+}
+
+.book_cover{
+    position: relative;
+    margin: 10px auto;
+    width: 120px;
+    height: 160px;
+    background-color: white;
+    background-size: auto 100%;
+    background-position: center;
+    overflow: hidden;
+}
+
+.book_cover_icon{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.no_book_cover_icon{
+    position: absolute;
+    left: 0;
+    max-width: 100%;
+    height: auto;
+}
+
+.in_stock, .out_of_stock{
+    color: white;
+    position: absolute;
+    text-align: left;
+    width: 100%;
+    height: 10px;
+    left: 0;
+    padding: 5px 20px 60px;
+    font-family: Cambria;
+    font-weight: bold;
+    background-image: linear-gradient(to bottom, black, transparent);
+}
+
+.out_of_stock_icon, .in_stock_icon{
+    position: absolute;
+    padding: 4px 5px;
+    width: 12px;
+    height: 12px;
+    left: 0;
+}
+
+.author{
+    position: absolute;
+    font-size: 13px;
+    font-family: Calibri;
+    color: white;
+    padding: 10px 7px;
+    text-align: left;
+    text-shadow: black 0px 0px 10px;
+}
+
+.already_taken_button{
+    background-color: silver;
+    font-style: italic;
+}
+
+.already_taken_button:hover{
+    cursor: not-allowed;
+}
+
+.take_button{
+    color: white;
+    background-color: black;
+    font-family: Calibri;
+}
+
+.take_button:hover{
+    color: lightgrey;
+    background-color: darkgrey;
+}
+
+#take_book{
+    padding: 5px 20px;
+    margin-top: 5px;
+    border: 0 solid;
+    transition: ease-out 0.1s;
+}
+
+.wishlist_button{
+    font-family: Cambria;
+    color: white;
+    background-color: dodgerblue;
+}
+
+.wishlist_button:hover{
+    background-color: deepskyblue;
+}
+
+.remove_from_wishlist{
+    text-shadow: black 0 0 30px;
+    font-weight: bold;
+    font-family: Calibri;
+    background-color: crimson;
+}
+
+.remove_from_wishlist:hover{
+    background-color: red;
+}
+
+.my_books_buttons{
+    position: relative;
+    width: 100%;
+    display: table;
+    margin-bottom: 5px;
+    background-color: lightgrey;
+}
+
+.taken_books_button, .wishlist_books_button{
+    position: relative;
+    float: left;
+    padding: 20px 30px;
+    border: none;
+    font-size: 17px;
+    font-family: Calibri;
+    transition: ease-in 0.1s;
+}
+
+.taken_books_button:hover, .wishlist_books_button:hover{
+    background-color: darkgrey;
+}
+
+.book_detail_cover{
+    position: relative;
+    width: 220px;
+    height: 280px;
+    display: table;
+    float: left;
+    margin: 15px;
+    background-color: white;
+    background-size: auto 100%;
+    background-position: center;
+    overflow: hidden;
+    border: darkgrey 1px solid;
+}
+
+.book_detail_description{
+    display: block;
+    float: left;
+    margin-top: 30px;
+}
+
+.book_detail_title{
+    display: table;
+    font-size: 20px;
+    margin-top: 3px;
+    font-weight: bold;
+    font-family: Cambria;
+}
+
+.book_detail_divide_line{
+    height: 2px;
+    width: 200px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    background-color: silver;
+}
+
+.book_detail_author{
+    display: table;
+    font-size: 16px;
+    font-family: Calibri;
+}
+
+.times_taken{
+    display: table;
+    margin-top: 30px;
+    font-family: "Adobe Devanagari";
+    text-shadow: black 0 0 20px;
+}
+
+#book_detail_take_book{
+    display: table;
+    padding: 5px 20px;
+    margin-top: 5px;
+    border: 0 solid;
+    transition: ease-out 0.1s;
+}
+
+.num_of_pages{
+    display: block;
+}
+
+.page_number_button, .current_page_button{
+    display: block;
+    width: 10px;
+    height: 10px;
+    text-align: center;
+    float: left;
+    padding: 10px;
+    margin: 4px;
+}
+
+.page_number_button{
+    background-color: dodgerblue;
+}
+
+.current_page_button{
+    background-color: orange;
+}
+
+.footer{
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 1000px;
+    height: 30vh;
+    background-color: darkgrey;
+}

@@ -1,0 +1,65 @@
+{% extends 'library/home.html' %}
+{% load static %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="my_books_buttons">
+        <a href="{% url 'users:taken_books' %}">
+        <button class="taken_books_button">
+            Taken books
+        </button>
+        </a>
+        <a href="{% url 'users:wishlist_books' %}">
+        <button class="wishlist_books_button">
+            Wishlist books
+        </button>
+        </a>
+    </div>
+    {% if wishlist_books %}
+        {% for wishlisted_book in wishlist_books %}
+            <a href="{% url 'book_detail' wishlisted_book.book.id%}">
+            <div class="book">
+
+            <div class="book_cover">
+                {% if wishlisted_book.book.cover %}
+                    <img src="{{ wishlisted_book.book.cover.url }}" alt="{{ wishlisted_book.book.title }}" class="book_cover_icon" draggable="false">
+                {% else %}
+                    <img src="{% static 'library/images/no-image.png' %}" alt="{{ wishlisted_book.book.title }}" class="no_book_cover_icon" draggable="false">
+                {% endif %}
+
+                {% if wishlisted_book.book.stock > 0 %}
+                    <div class="in_stock">
+                    <img class="in_stock_icon" src="{% static 'library/images/in_stock.png' %}" alt="">
+                        In stock
+                    </div>
+                {% else %}
+                    <div class="out_of_stock">
+                    <img class="out_of_stock_icon" src="{% static 'library/images/out_of_stock.png' %}" alt="">
+                        Out of stock
+                    </div>
+                {% endif %}
+                <br/>
+                <div class="author">
+                    Author: {{ wishlisted_book.book.author }}
+                </div>
+            </div>
+
+            <div class="book_title">
+                {{ wishlisted_book.book.title }}
+            </div>
+                    <form method="POST" action="{% url 'users:remove_from_wishlist' wishlisted_book.book.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="remove_from_wishlist" id="take_book">Remove</button>
+                    </form>
+            </div>
+            </a>
+        {% endfor %}
+    {% else %}
+        <div style="margin-top: 100px; font-size: 20px">
+            No books wishlisted
+        </div>
+    {% endif %}
+{% endblock %}
