@@ -98,7 +98,7 @@ def notify_wishlist_users_on_book_stock_increase(sender, instance, **kwargs):
 
 
 @receiver(post_delete, sender=TakenBook)
-def increase_book_stock(sender, instance, **kwargs):
+def increase_book_stock_on_book_return(sender, instance, **kwargs):
     instance.book.stock += 1
     instance.book.save()
     notify_wishlist_users(instance.book)
