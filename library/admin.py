@@ -19,7 +19,7 @@ class BookCategoryInline(admin.TabularInline):
 class BookAdmin(admin.ModelAdmin):
     list_display = ['title', 'author', 'stock', 'times_taken']
     list_filter = ['author', 'category', 'stock']
-    search_fields = ['title', 'author', 'category']
+    search_fields = ['title', 'author__name', 'category__name']
 
 
 @admin.register(Author)
