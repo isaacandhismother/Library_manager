@@ -3,6 +3,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const notificationPanel = document.getElementById('notification-panel');
     const unreadCount = document.getElementById('unread-count');
 
+    function updateUnreadCountBackground() {
+        if (parseInt(unreadCount.textContent.trim()) > 0) {
+            unreadCount.style.backgroundColor = 'red';
+        } else {
+            unreadCount.style.backgroundColor = 'transparent';
+        }
+    }
+
+    updateUnreadCountBackground();
+
+
     notificationButton.addEventListener('click', function () {
         notificationPanel.classList.toggle('hidden');
         fetch('/users/mark_notifications_as_read/', {
@@ -15,9 +26,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }).then(response => {
             if (response.status === 200) {
                 unreadCount.textContent = '';
+                updateUnreadCountBackground();
             }
         });
     });
+
 
     function getCookie(name) {
         let cookieValue = null;
