@@ -89,14 +89,6 @@ def create_returned_book(sender, instance, **kwargs):
             transaction.on_commit(delete_and_create_returned_book)
 
 
-@receiver(pre_save, sender=Book)
-def notify_wishlist_users_on_book_stock_increase(sender, instance, **kwargs):
-    if instance.pk:
-        previous_instance = Book.objects.get(pk=instance.pk)
-        if instance.stock > previous_instance.stock:
-            notify_wishlist_users(instance)
-
-
 @receiver(post_delete, sender=TakenBook)
 def increase_book_stock_on_book_return(sender, instance, **kwargs):
     instance.book.stock += 1
@@ -111,6 +103,14 @@ def notify_wishlist_users(book):
         message = f'The book "{book.title}" is in stock!'
         link = reverse('book_detail', args=[book.id])
         Notification.objects.create(user=user, message=message, link=link)
+
+
+@receiver(pre_save, sender=Book)
+def notify_wishlist_users_on_book_stock_increase(sender, instance, **kwargs):
+    if instance.pk:
+        previous_instance = Book.objects.get(pk=instance.pk)
+        if instance.stock > previous_instance.stock:
+            notify_wishlist_users(instance)
 
 
 @receiver(post_save, sender=TakenBook)
